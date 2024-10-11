@@ -6,6 +6,9 @@ const CartPopup = () => {
   const cart = useCartStore((state) => state.cart);
   const cleareCart = useCartStore((state) => state.cleareCart);
   const isCartOpen = useCartStore((state) => state.isCartOpen);
+  const increaseQuantity = useCartStore((state) => state.increaseQuantity);
+  const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
+  const removeItem = useCartStore((state) => state.removeItem);
 
   if (!isCartOpen) return null;
 
@@ -34,13 +37,22 @@ const CartPopup = () => {
                 <p>Qty: {item.quantity}</p>
               </div>
               <div className="flex space-x-1">
-                <button className="bg-green-500 text-white px-2 rounded">
+                <button
+                  onClick={() => increaseQuantity(item.id)}
+                  className="bg-green-500 text-white px-2 rounded"
+                >
                   +
                 </button>
-                <button className="bg-yellow-500 text-white px-2 rounded">
+                <button
+                  onClick={() => decreaseQuantity(item.id)}
+                  className="bg-yellow-500 text-white px-2 rounded"
+                >
                   -
                 </button>
-                <button className="bg-red-500 text-white px-2 rounded">
+                <button
+                  onClick={() => removeItem(item.id)}
+                  className="bg-red-500 text-white px-2 rounded"
+                >
                   Remove
                 </button>
               </div>
